@@ -1,0 +1,70 @@
+@(message: String)
+
+@main("Todos - Play2.0") {
+    
+	<!-- Todo App Interface -->
+	<section id="todoapp">
+
+		<header id="header">
+	    	<h1>todos</h1>
+			<input id="new-todo" placeholder="What needs to be done?" autofocus>
+      		<span class="ui-tooltip-top" style="display:none;">Press Enter to save this task</span>
+	  	</header>
+	
+	  	<section id="main">
+			<input id="toggle-all" type="checkbox">
+			<label for="toggle-all">Mark all as complete</label>
+	      	<ul id="todo-list"></ul>            
+		</section>
+		
+		<footer id="footer">
+			<ul id="filters">
+				<li>
+					<a class="selected" href="#/">All</a>
+				</li>
+				<li>
+					<a href="#/active" class="">Active</a>
+				</li>
+				<li>
+					<a href="#/completed" class="">Completed</a>
+				</li>
+			</ul>
+			<div id="todo-stats">
+			</div>
+		</footer>
+	</section>
+	
+	<footer id="info">
+		<p>Double-click to edit a todo</p>
+		<p>View source at <a href="https://github.com/gguan/todos-play20"> todos-play20(scala)</a></p>
+		<p>Ported by <a href="https://github.com/gguan">Guan Guan</a> using playframework2.0 scala as server framework</p>
+		<p>Template by <a href="http://github.com/sindresorhus">Sindre Sorhus</a></p>
+		<p>Originally created by Jérôme Gravel-Niquet <a href="http://documentcloud.github.com/backbone/examples/todos/index.html">backbone demo</a></p>
+	</footer>
+
+	<!-- Templates -->
+
+	<script type="text/template" id="item-template">
+	  <li aria-checked="<%= done ? 'true' : 'false' %>" id=":p" class="item">
+	    <div class="view">
+	      <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
+	      <label class="todo-text"></label>
+	      <button class="destroy"></button>
+	    </div>
+	    <input class="edit" value="" tabindex="0">
+	  </li>
+	</script>
+
+	<script type="text/template" id="stats-template">
+	  <% if (total) { %>
+	    <span id="todo-count">
+	      <strong><%= remaining %></strong>
+	      <%= remaining == 1 ? 'item' : 'items' %> left
+	    </span>
+	  <% } %>
+	  <% if (done) { %>
+		<button id="clear-completed" style="-webkit-user-select: none; " tabindex="0">Clear completed (<%= done %>)</button>
+	  <% } %>
+	</script>
+
+}
